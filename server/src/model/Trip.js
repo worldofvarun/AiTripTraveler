@@ -1,47 +1,52 @@
-import mongoose from "mongoose";
+import mongoose,{Schema} from 'mongoose'
 
-const Schema = new mongoose.Schema({
-    userId: {type: mongoose.Schema.Types.ObjectId},
-    thumbnail: String,
-    From: String,
-    To: String,
-    Duration: {
-        Days: Number,
-        Nights: Number
-    },
-    Travelers: Number,
-    Budget: String,
-    Transportation: [{
-        Mode: String,
-        Details: String,
-        Price: String,
-        BookingURL: String
-    }],
-    Accommodation: [{
-        HotelName: String,
-        HotelAddress: String,
-        HotelImage: String,
-        HotelPrice: String,
-        GeoCoordinates: String,
-        Rating: String,
-        Description: String,
-        PlacesToVisitNearby: [{
-            PlaceName: String,
-            PlaceDetails: String,
-            GeoCoordinates: String,
-            TicketPricing: String,
-            TimeToTravel: String
-        }]
-    }],
-    Itinerary: [{
-        PlaceImage: String,
-        Day: Number,
-        Time: String,
-        Activity: String,
-        PlacesToVisit: String
-    }],
-    create_at: {type: Date, default: Date.now}
+const TransportationSchema = new Schema({
+    mode: String,
+    details: String,
+    price: String,
+    bookingURL: String
 });
 
-export const Trip = mongoose.model('Trip', Schema);
+const PlaceNearbySchema = new Schema({
+    name: String,
+    details: String,
+    geoCoordinates: String,
+    ticketPricing: String,
+    coordinateTime: String
+});
+
+const HotelSchema = new Schema({
+    hotelImage: String,
+    name: String,
+    address: String,
+    price: String,
+    geoCoordinates: String,
+    rating: String,
+    description: String,
+    placesNearby: [PlaceNearbySchema]
+});
+
+const DailyPlanSchema = new Schema({
+    PlaceImage: String,
+    day: Number,
+    time: String,
+    location: String,
+    details: String,
+    geoCoordinates: String
+});
+
+const TripSchema = new Schema({
+    thumbnail: String,
+    userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+    from: String,
+    to: String,
+    duration: Number,
+    travelers: Number,
+    budget: String,
+    transportation: [TransportationSchema],
+    hotels: [HotelSchema],
+    dailyPlan: [DailyPlanSchema]
+});
+
+export const Trip = mongoose.model('Trip', TripSchema);
 

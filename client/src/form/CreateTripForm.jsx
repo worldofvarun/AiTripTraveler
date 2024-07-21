@@ -26,7 +26,7 @@ function CreateTripForm({onSubmit, isLoading}) {
     }
 
     return (
-        <form className={'md:w-3/6 flex flex-col gap-4'} onSubmit={handleSubmit( data => onSubmitHandler(data))}>
+        <form className={'flex flex-col gap-4'} onSubmit={handleSubmit( data => onSubmitHandler(data))}>
             <Label htmlFor={'from'}>
                 where your trip start from?
                 <AutoComplete
@@ -110,7 +110,7 @@ function CreateTripForm({onSubmit, isLoading}) {
                     />
                 </Label>
             )}
-            <Button type={'submit'} disabled={isLoading}>Create Trip</Button>
+            <Button type={'submit'} className={'bg-blue-500'} disabled={isLoading}>Create Trip</Button>
         </form>
     );
 }

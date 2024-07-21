@@ -31,7 +31,7 @@ export  async function SignIn(req, res) {
         const {email, password} = req.body;
         const isUser = await User.findOne({email: email}).select('+password');
         if(!isUser){
-            return res.status(400).send({message: 'Email already exists'});
+            return res.status(400).send({message: 'User Not Found!'});
         }
         const isMatch = bcrypt.compare(password, isUser.password);
         if(!isMatch){

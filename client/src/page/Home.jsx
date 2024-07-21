@@ -17,7 +17,7 @@ function Home() {
         <>
         <div className={'flex justify-between items-center mb-4'}>
             <h1 className={'text-xl font-bold'}>My Trips</h1>
-            <Button onClick={() => navigate(paths.create)}>Create Trip</Button>
+            <Button className={'bg-blue-500'} onClick={() => navigate(paths.create)}>Create Trip</Button>
         </div>
 
         <div className={'grid md:grid-cols-3 gap-4'}>

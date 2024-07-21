@@ -6,10 +6,10 @@ const TripCard = ({ trip }) => {
     const navigate = useNavigate();
     return (
         <div className="w-full overflow-hidden cursor-pointer" onClick={() => navigate(`${paths.trip}/${trip._id}`)}>
-            <img src={trip.thumbnail} alt={trip.To} className="w-full h-64 object-cover rounded-md" />
+            <img src={trip.thumbnail} alt={trip.to} className="w-full h-64 object-cover rounded-md" />
             <div className={'flex flex-col'}>
-                <span className="font-bold text-xl mt-2">Trip to {trip.To.split(',')[0]} from {trip.From.split(',')[0]}</span>
-                <span className="text-base text-gray-500">{trip.Duration.Days} Days trip with {trip.Budget} Budget</span>
+                <span className="font-bold text-xl mt-2">Trip to {trip.to.split(',')[0]} from {trip.from.split(',')[0]}</span>
+                <span className="text-base text-gray-500">{trip.duration} Days trip with {trip.budget} Budget</span>
             </div>
         </div>
     );
